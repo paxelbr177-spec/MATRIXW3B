@@ -10,13 +10,18 @@ import os
 import urllib.request
 import urllib.parse
 
-PORT = int(os.environ.get("PORT", 8080))
+# Load .env file if present
+env_file = os.path.join(os.path.dirname(__file__), ".env")
+if os.path.exists(env_file):
+    with open(env_file, "r", encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if line and not line.startswith("#") and "=" in line:
+                k, v = line.split("=", 1)
+                os.environ[k.strip()] = v.strip().strip("'\"")
 
-# NVIDIA API Configuration provided by user
-NVIDIA_API_KEY = os.environ.get(
-    "NVIDIA_API_KEY", 
-    "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"
-)
+PORT = int(os.environ.get("PORT", 8080))
+NVIDIA_API_KEY = os.environ.get("NVIDIA_API_KEY", "")
 NVIDIA_MODEL = os.environ.get("NVIDIA_MODEL", "z-ai/glm-5.2")
 NVIDIA_BASE_URL = "https://integrate.api.nvidia.com/v1/chat/completions"
 
