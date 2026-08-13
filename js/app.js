@@ -1,6 +1,6 @@
 /**
  * Main Application Logic & Orchestrator
- * Matrix Web (Courses, Tools Marketplace, MercadoPago API Checkouts, Auto PDF Download & Certificate Delivery)
+ * Matrix Web (Courses, Tools Marketplace, Direct QR / Pix Payment, Auto PDF Download & Certificate Delivery)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -381,7 +381,7 @@ function initToolsGrid() {
 }
 
 /**
- * MercadoPago Regionalized Checkout Modal Logic & Automatic PDF Download
+ * MercadoPago Regionalized Checkout Modal Logic with Direct QR Payment & Pix
  */
 let activeItemForCheckout = null;
 
@@ -407,6 +407,32 @@ function openCheckoutModal(item, type) {
   const mpPriceBrl = document.getElementById('mp-price-brl');
   if (mpPriceBrl) mpPriceBrl.textContent = `R$ ${item.priceBRL.toLocaleString()} BRL`;
 
+  // Update Direct QR Code Display & Copy Key Input
+  const qrTitle = document.getElementById('qr-region-title');
+  const qrImg = document.getElementById('qr-code-img');
+  const qrInput = document.getElementById('qr-copy-key-input');
+  const qrInstructions = document.getElementById('qr-instructions');
+
+  if (currentLang === 'pt') {
+    if (qrTitle) qrTitle.textContent = "🇧🇷 QR PIX Instantâneo MercadoPago (R$ 80 BRL)";
+    if (qrInstructions) qrInstructions.textContent = "Abra o app do seu banco ou Mercado Pago, escolha 'Pagar com PIX' e escaneie o código abaixo.";
+    
+    // Pix Copy Key & QR
+    const pixKey = "matrixweb@pix.com.br";
+    if (qrInput) qrInput.value = pixKey;
+    const qrData = encodeURIComponent(`00020126580014BR.GOV.BCB.PIX0136${pixKey}520400005303986540580.005802BR5920Matrix%20Web%20Brasil6009SAO%20PAULO62070503***6304`);
+    if (qrImg) qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${qrData}`;
+  } else {
+    if (qrTitle) qrTitle.textContent = "🇦🇷 QR MercadoPago Instantáneo ($18.000 ARS)";
+    if (qrInstructions) qrInstructions.textContent = "Abre tu app de Mercado Pago o Banco, selecciona 'Escanear QR' y abona al instante.";
+    
+    // Alias / CVU MercadoPago ARS
+    const mpAlias = "matrixweb.mp";
+    if (qrInput) qrInput.value = mpAlias;
+    const qrData = encodeURIComponent(`00020101021243650016COM.MERCADOPAGO0236${mpAlias}`);
+    if (qrImg) qrImg.src = `https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=${qrData}`;
+  }
+
   // WhatsApp Link
   const wspLink = document.getElementById('wsp-checkout-link');
   if (wspLink) {
@@ -416,19 +442,45 @@ function openCheckoutModal(item, type) {
     wspLink.href = `https://wa.me/5512991386257?text=${encodedMsg}`;
   }
 
-  // Highlight button by language/country
-  const mpBtnAr = document.getElementById('mp-btn-ar');
-  const mpBtnBr = document.getElementById('mp-btn-br');
-
-  if (currentLang === 'pt') {
-    mpBtnBr.style.order = "-1";
-    mpBtnAr.style.order = "0";
-  } else {
-    mpBtnAr.style.order = "-1";
-    mpBtnBr.style.order = "0";
-  }
+  // Reset tab to QR View
+  switchCheckoutTab('qr');
 
   modal.classList.add('active');
+}
+
+function switchCheckoutTab(mode) {
+  const qrView = document.getElementById('checkout-qr-view');
+  const webView = document.getElementById('checkout-web-view');
+  const tabQr = document.getElementById('tab-btn-qr');
+  const tabWeb = document.getElementById('tab-btn-web');
+
+  if (mode === 'qr') {
+    if (qrView) qrView.style.display = 'flex';
+    if (webView) webView.style.display = 'none';
+    if (tabQr) {
+      tabQr.style.background = 'var(--matrix-green)';
+      tabQr.style.color = '#041d14';
+      tabQr.style.fontWeight = '600';
+    }
+    if (tabWeb) {
+      tabWeb.style.background = 'transparent';
+      tabWeb.style.color = 'var(--text-muted)';
+      tabWeb.style.fontWeight = 'normal';
+    }
+  } else {
+    if (qrView) qrView.style.display = 'none';
+    if (webView) webView.style.display = 'flex';
+    if (tabWeb) {
+      tabWeb.style.background = 'var(--matrix-green)';
+      tabWeb.style.color = '#041d14';
+      tabWeb.style.fontWeight = '600';
+    }
+    if (tabQr) {
+      tabQr.style.background = 'transparent';
+      tabQr.style.color = 'var(--text-muted)';
+      tabQr.style.fontWeight = 'normal';
+    }
+  }
 }
 
 async function processPaymentConfirmation(region) {
@@ -442,10 +494,12 @@ async function processPaymentConfirmation(region) {
   const currency = region === 'AR' ? 'ARS' : 'BRL';
 
   const targetBtn = region === 'AR' ? document.getElementById('mp-btn-ar') : document.getElementById('mp-btn-br');
-  const originalHtml = targetBtn.innerHTML;
+  const originalHtml = targetBtn ? targetBtn.innerHTML : "";
   
-  targetBtn.innerHTML = `<span>⏳ Conectando MercadoPago (${region})...</span>`;
-  targetBtn.disabled = true;
+  if (targetBtn) {
+    targetBtn.innerHTML = `<span>⏳ Conectando MercadoPago (${region})...</span>`;
+    targetBtn.disabled = true;
+  }
 
   try {
     const res = await fetch('/api/create-preference', {
@@ -473,8 +527,10 @@ async function processPaymentConfirmation(region) {
 
   // Local / Fallback simulated payment flow
   setTimeout(() => {
-    targetBtn.innerHTML = originalHtml;
-    targetBtn.disabled = false;
+    if (targetBtn) {
+      targetBtn.innerHTML = originalHtml;
+      targetBtn.disabled = false;
+    }
 
     if (modal) modal.classList.remove('active');
 
@@ -485,7 +541,7 @@ async function processPaymentConfirmation(region) {
     if (window.certificateGenerator) {
       window.certificateGenerator.open(itemTitle);
     }
-  }, 1200);
+  }, 1000);
 }
 
 function triggerCoursePdfDownload(item, lang = 'es') {
@@ -531,6 +587,38 @@ function initCheckoutModal() {
 
   const mpBtnAr = document.getElementById('mp-btn-ar');
   const mpBtnBr = document.getElementById('mp-btn-br');
+  const tabQr = document.getElementById('tab-btn-qr');
+  const tabWeb = document.getElementById('tab-btn-web');
+  const copyBtn = document.getElementById('qr-copy-btn');
+  const copyInput = document.getElementById('qr-copy-key-input');
+  const confirmPaidBtn = document.getElementById('qr-confirm-paid-btn');
+
+  if (tabQr) tabQr.addEventListener('click', () => switchCheckoutTab('qr'));
+  if (tabWeb) tabWeb.addEventListener('click', () => switchCheckoutTab('web'));
+
+  if (copyBtn && copyInput) {
+    copyBtn.addEventListener('click', () => {
+      copyInput.select();
+      navigator.clipboard.writeText(copyInput.value);
+      const originalText = copyBtn.innerHTML;
+      copyBtn.innerHTML = "✔ ¡Copiado!";
+      setTimeout(() => { copyBtn.innerHTML = originalText; }, 1800);
+    });
+  }
+
+  if (confirmPaidBtn) {
+    confirmPaidBtn.addEventListener('click', () => {
+      if (modal) modal.classList.remove('active');
+      const currentLang = window.i18nManager ? window.i18nManager.currentLang : 'es';
+      if (activeItemForCheckout) {
+        const itemTitle = activeItemForCheckout.title[currentLang] || activeItemForCheckout.title.es;
+        triggerCoursePdfDownload(activeItemForCheckout, currentLang);
+        if (window.certificateGenerator) {
+          window.certificateGenerator.open(itemTitle);
+        }
+      }
+    });
+  }
 
   if (mpBtnAr) {
     mpBtnAr.addEventListener('click', (e) => {

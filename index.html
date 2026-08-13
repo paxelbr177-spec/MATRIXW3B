@@ -452,34 +452,76 @@
       </div>
     </div>
 
-    <!-- MercadoPago Regionalized Checkout Modal -->
+    <!-- MercadoPago Regionalized Checkout Modal with Direct QR Payment -->
     <div class="modal-overlay" id="checkout-modal">
-      <div class="modal-content" style="max-width:550px;">
+      <div class="modal-content" style="max-width:600px;">
         <button class="modal-close-btn" id="checkout-modal-close-btn">&times;</button>
-        <div style="padding: 32px;">
-          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+        <div style="padding: 28px;">
+          
+          <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;">
             <span class="badge badge-green" data-i18n="checkout_modal_title">Checkout de Compra Segura</span>
+            <span class="badge badge-purple" style="font-family:var(--font-mono); font-size:11px;">$15 USD / Instantáneo</span>
           </div>
 
-          <h3 id="checkout-item-title" class="font-heading" style="font-size:22px; font-weight:700; color:#fff; margin-bottom:8px;">
+          <h3 id="checkout-item-title" class="font-heading" style="font-size:22px; font-weight:700; color:#fff; margin-bottom:6px;">
             <!-- Dynamic Item Title -->
           </h3>
-          <p id="checkout-item-desc" style="color:var(--text-muted); font-size:14px; margin-bottom:20px;">
+          <p id="checkout-item-desc" style="color:var(--text-muted); font-size:13px; margin-bottom:16px;">
             <!-- Dynamic Item Desc -->
           </p>
 
-          <div style="background:var(--bg-terminal); border:1px solid var(--border-subtle); border-radius:12px; padding:16px; display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
-            <span style="color:var(--text-muted); font-size:14px;" data-i18n="checkout_lbl_price">Precio Total</span>
+          <div style="background:var(--bg-terminal); border:1px solid var(--border-subtle); border-radius:12px; padding:14px 18px; display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+            <span style="color:var(--text-muted); font-size:13px;" data-i18n="checkout_lbl_price">Precio Total</span>
             <div id="checkout-item-price" class="product-price-tag">
               <!-- Dynamic Price -->
             </div>
           </div>
 
-          <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;" data-i18n="checkout_select_mp">
-            Selecciona tu región para abonar vía MercadoPago:
-          </p>
+          <!-- Payment Method Mode Switcher (QR vs Web Link) -->
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:20px; background:rgba(255,255,255,0.03); border:1px solid var(--border-subtle); padding:4px; border-radius:10px;">
+            <button id="tab-btn-qr" class="btn active" style="padding:10px; font-size:13px; border-radius:8px; background:var(--matrix-green); color:#041d14; font-weight:600;">
+              📱 Escanear Código QR / Pix
+            </button>
+            <button id="tab-btn-web" class="btn" style="padding:10px; font-size:13px; border-radius:8px; background:transparent; color:var(--text-muted); border:none;">
+              💳 Tarjetas / MercadoPago Web
+            </button>
+          </div>
 
-          <div class="mp-checkout-box">
+          <!-- Section 1: Direct QR Code Payment (Default Active) -->
+          <div id="checkout-qr-view" style="display:flex; flex-direction:column; align-items:center; text-align:center;">
+            
+            <!-- QR Display Box with Scanner Effect -->
+            <div style="position:relative; padding:16px; background:#fff; border-radius:16px; box-shadow:0 0 30px rgba(16, 185, 129, 0.4); margin-bottom:16px; border:3px solid var(--matrix-green);">
+              <img id="qr-code-img" src="" alt="QR de Pago MercadoPago / Pix" style="width:180px; height:180px; display:block; border-radius:8px;" />
+              <div class="qr-scan-line"></div>
+            </div>
+
+            <!-- Region & Currency Info -->
+            <div style="margin-bottom:14px;">
+              <div id="qr-region-title" style="font-family:var(--font-heading); font-weight:700; font-size:16px; color:#fff;">
+                <!-- Dynamic Region Title -->
+              </div>
+              <p id="qr-instructions" style="font-size:12px; color:var(--text-muted); margin-top:4px;">
+                Escanea con tu aplicación de Mercado Pago, Pix o Banco para acreditar al instante.
+              </p>
+            </div>
+
+            <!-- Copy Key Button (Chave PIX / Alias) -->
+            <div style="width:100%; display:flex; gap:8px; margin-bottom:16px;">
+              <input type="text" id="qr-copy-key-input" readonly class="form-input" style="font-size:12px; font-family:var(--font-mono); text-align:center; flex:1;" value="" />
+              <button id="qr-copy-btn" class="btn btn-purple" style="font-size:12px; padding:8px 14px; white-space:nowrap;">
+                📋 Copiar Clave
+              </button>
+            </div>
+
+            <!-- Manual Confirm Payment Button -->
+            <button id="qr-confirm-paid-btn" class="btn btn-primary glow-effect" style="width:100%; font-size:15px; padding:14px;">
+              ✅ ¡Ya Escané y Pagué! Descargar PDF & Certificado &rarr;
+            </button>
+          </div>
+
+          <!-- Section 2: Standard MercadoPago Redirect Links (Hidden by default) -->
+          <div id="checkout-web-view" style="display:none;" class="mp-checkout-box">
             <!-- MercadoPago Argentina Option -->
             <button id="mp-btn-ar" class="mp-option-btn mp-btn-ar">
               <span>🇦🇷 MercadoPago Argentina (ARS)</span>
@@ -497,6 +539,7 @@
               Consultar o Adquirir por WhatsApp &rarr;
             </a>
           </div>
+
         </div>
       </div>
     </div>

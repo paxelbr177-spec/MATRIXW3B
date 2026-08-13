@@ -1252,16 +1252,21 @@ header, main, footer {
   transform: translateY(-2px);
 }
 
-.wsp-checkout-btn {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid var(--border-subtle);
-  color: var(--text-main);
+/* QR Code High-Tech Scanner Animation */
+.qr-scan-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #10b981, #06b6d4, transparent);
+  box-shadow: 0 0 15px #10b981;
+  animation: qr-scan-move 2.5s ease-in-out infinite alternate;
 }
 
-.wsp-checkout-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--matrix-green);
-  color: var(--matrix-green-bright);
+@keyframes qr-scan-move {
+  0% { top: 12px; }
+  100% { top: calc(100% - 16px); }
 }
 
 /* ==========================================================================
