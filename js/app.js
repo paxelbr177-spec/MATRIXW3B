@@ -1,6 +1,6 @@
 /**
  * Main Application Logic & Orchestrator
- * Matrix Web (Courses, Tools Marketplace, Automatic PDF Download & Certificate Delivery)
+ * Matrix Web (Courses, Tools Marketplace, MercadoPago API Checkouts, Auto PDF Download & Certificate Delivery)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -82,10 +82,13 @@ document.addEventListener('DOMContentLoaded', () => {
   // 10. MercadoPago Checkout Modal Listeners
   initCheckoutModal();
 
-  // 11. Contact Form Simulation
+  // 11. Check Payment Return Parameters (MercadoPago Redirect Success)
+  checkPaymentRedirectReturn();
+
+  // 12. Contact Form Simulation
   initContactForm();
 
-  // 12. Mobile Menu Toggle
+  // 13. Mobile Menu Toggle
   const mobileToggle = document.getElementById('mobile-menu-toggle');
   const navLinks = document.querySelector('.nav-links');
   if (mobileToggle && navLinks) {
@@ -428,44 +431,98 @@ function openCheckoutModal(item, type) {
   modal.classList.add('active');
 }
 
-function processPaymentConfirmation(region) {
+async function processPaymentConfirmation(region) {
   const modal = document.getElementById('checkout-modal');
   if (!activeItemForCheckout) return;
 
   const currentLang = window.i18nManager ? window.i18nManager.currentLang : 'es';
   const item = activeItemForCheckout;
   const itemTitle = item.title[currentLang] || item.title.es;
+  const price = region === 'AR' ? item.priceARS : item.priceBRL;
+  const currency = region === 'AR' ? 'ARS' : 'BRL';
 
-  // 1. Simulate MercadoPago Payment Acknowledgment
   const targetBtn = region === 'AR' ? document.getElementById('mp-btn-ar') : document.getElementById('mp-btn-br');
   const originalHtml = targetBtn.innerHTML;
   
-  targetBtn.innerHTML = `<span>⏳ Procesando pago MercadoPago (${region})...</span>`;
+  targetBtn.innerHTML = `<span>⏳ Conectando MercadoPago (${region})...</span>`;
   targetBtn.disabled = true;
 
+  try {
+    const res = await fetch('/api/create-preference', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        title: itemTitle,
+        price: price,
+        currency: currency,
+        region: region,
+        course_id: item.id
+      })
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      if (data.success && data.init_point && data.mode === "live") {
+        window.location.href = data.init_point;
+        return;
+      }
+    }
+  } catch (e) {
+    console.warn('[MercadoPago API] Fallback to simulated auto-download:', e.message);
+  }
+
+  // Local / Fallback simulated payment flow
   setTimeout(() => {
     targetBtn.innerHTML = originalHtml;
     targetBtn.disabled = false;
 
-    // Close Checkout Modal
     if (modal) modal.classList.remove('active');
 
-    // 2. Trigger Automatic PDF Download (If Course)
-    if (item.pdfFiles) {
-      const pdfPath = item.pdfFiles[currentLang] || item.pdfFiles.es;
-      const downloadLink = document.createElement('a');
-      downloadLink.href = pdfPath;
-      downloadLink.download = pdfPath.split('/').pop();
-      document.body.appendChild(downloadLink);
-      downloadLink.click();
-      document.body.removeChild(downloadLink);
-    }
+    // Trigger Automatic PDF Download
+    triggerCoursePdfDownload(item, currentLang);
 
-    // 3. Open Official Certificate Generator Modal
+    // Open Official Certificate Generator Modal
     if (window.certificateGenerator) {
       window.certificateGenerator.open(itemTitle);
     }
   }, 1200);
+}
+
+function triggerCoursePdfDownload(item, lang = 'es') {
+  if (item && item.pdfFiles) {
+    const pdfPath = item.pdfFiles[lang] || item.pdfFiles.es;
+    const downloadLink = document.createElement('a');
+    downloadLink.href = pdfPath;
+    downloadLink.download = pdfPath.split('/').pop();
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
+}
+
+function checkPaymentRedirectReturn() {
+  const urlParams = new URLSearchParams(window.location.search);
+  const paymentStatus = urlParams.get('payment');
+  const courseId = urlParams.get('course_id');
+
+  if (paymentStatus === 'success' && courseId && window.COURSES_DATA) {
+    const matchedCourse = window.COURSES_DATA.find(c => c.id === courseId);
+    const currentLang = window.i18nManager ? window.i18nManager.currentLang : 'es';
+
+    if (matchedCourse) {
+      const title = matchedCourse.title[currentLang] || matchedCourse.title.es;
+      
+      // Auto download PDF
+      triggerCoursePdfDownload(matchedCourse, currentLang);
+
+      // Open Certificate Generator
+      setTimeout(() => {
+        if (window.certificateGenerator) {
+          window.certificateGenerator.open(title);
+        }
+      }, 600);
+    }
+  }
 }
 
 function initCheckoutModal() {
