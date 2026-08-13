@@ -1,0 +1,857 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matrix Web | Agentes de IA, SaaS, Páginas Web & Arquitectura de Bases de Datos</title>
+  <meta name="description" content="Agencia tecnológica especializada en Desarrollo Web High-End, Plataformas SaaS, Inteligencia Artificial, Agentes Autónomos RAG y Optimización de Bases de Datos de Alto Tráfico.">
+  <meta name="theme-color" content="#07090e">
+
+  <!-- OpenGraph / Social Media -->
+  <meta property="og:title" content="Matrix Web - Software, IA & Cloud Architecture">
+  <meta property="og:description" content="Transformamos ideas en productos digitales de alto rendimiento. Descubre nuestros servicios de Web, SaaS, IA y Bases de Datos.">
+  <meta property="og:type" content="website">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2307090e'/><text x='50' y='65' font-size='60' text-anchor='middle' fill='%2310b981' font-family='monospace'>M</text></svg>">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- YouTube Video Background -->
+  <div id="video-bg-container" class="video-bg-container">
+    <iframe 
+      id="youtube-bg-player" 
+      src="https://www.youtube.com/embed/rHNEhOSTX_g?autoplay=1&mute=1&muted=1&controls=0&loop=1&playlist=rHNEhOSTX_g&playsinline=1&enablejsapi=1&widgetid=1" 
+      title="Matrix Cyberpunk Background Video" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      allowfullscreen>
+    </iframe>
+    <div class="video-bg-overlay"></div>
+  </div>
+
+  <!-- Matrix Digital Rain Background Canvas -->
+  <canvas id="matrix-canvas"></canvas>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container navbar-inner">
+      <a href="#" class="logo">
+        <div class="logo-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="16 18 22 12 16 6"></polyline>
+            <polyline points="8 6 2 12 8 18"></polyline>
+          </svg>
+        </div>
+        <span>MATRIX <span class="gradient-text-green">WEB</span></span>
+      </a>
+
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#servicios" class="nav-link" data-i18n="nav_services">Servicios</a></li>
+          <li><a href="#simulador-ia" class="nav-link" data-i18n="nav_demo">Probador IA</a></li>
+          <li><a href="#portafolio" class="nav-link" data-i18n="nav_portfolio">Lo que hicimos</a></li>
+          <li><a href="#cursos" class="nav-link" data-i18n="nav_courses">Cursos</a></li>
+          <li><a href="#herramientas" class="nav-link" data-i18n="nav_tools">Herramientas</a></li>
+          <li><a href="#cotizador" class="nav-link" data-i18n="nav_calculator">Calculadora</a></li>
+          <li><a href="#tecnologias" class="nav-link" data-i18n="nav_stack">Stack</a></li>
+          <li><a href="#contacto" class="nav-link" data-i18n="nav_contact">Contacto</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Language Switcher (ES / PT) -->
+        <div class="lang-switcher">
+          <button id="lang-btn-es" class="lang-btn active" title="Español (Argentina / LatAm)">🇦🇷 ES</button>
+          <button id="lang-btn-pt" class="lang-btn" title="Português (Brasil)">🇧🇷 PT</button>
+        </div>
+
+        <button id="toggle-matrix-btn" class="toggle-matrix-btn active" title="Alternar Lluvia Matrix">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+            <line x1="8" y1="21" x2="16" y2="21"></line>
+            <line x1="12" y1="17" x2="12" y2="21"></line>
+          </svg>
+        </button>
+
+        <a href="#contacto" class="btn btn-primary btn-sm glow-effect" data-i18n="nav_quote">Cotizar Proyecto</a>
+        <button id="mobile-menu-toggle" class="mobile-menu-toggle" aria-label="Abrir menú">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-grid">
+          
+          <div class="hero-content">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span class="badge badge-green">
+                <span class="status-dot"></span>
+                <span data-i18n="hero_badge">Disponibles para nuevos proyectos</span>
+              </span>
+            </div>
+
+            <h1 class="hero-title" data-i18n="hero_title">
+              Creamos el software que impulsa tu empresa hacia el <span class="gradient-text-green">Futuro Digital.</span>
+            </h1>
+
+            <p class="hero-subtitle" data-i18n="hero_subtitle">
+              En <strong>Matrix Web</strong> desarrollamos sitios web de alto impacto, plataformas SaaS escalables, arquitecturas de bases de datos de ultra-rendimiento y Agentes de Inteligencia Artificial que automatizan tus procesos.
+            </p>
+
+            <div style="display:flex; gap:16px; flex-wrap:wrap; margin-top:8px;">
+              <a href="#simulador-ia" class="btn btn-purple glow-effect">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10H12V2z"></path><path d="M12 12L2.1 12.1"></path><path d="M12 12l8.5 8.5"></path></svg>
+                <span data-i18n="hero_btn_agent">Probar Agente IA en vivo</span>
+              </a>
+              <a href="#portafolio" class="btn btn-secondary" data-i18n="hero_btn_portfolio">
+                Ver Trabajos Realizados
+              </a>
+            </div>
+
+            <div class="hero-stats">
+              <div class="stat-item">
+                <span class="stat-number gradient-text-green">99.99%</span>
+                <span class="stat-label" data-i18n="hero_stat_uptime">Uptime & Confiabilidad</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number gradient-text-purple">+50k</span>
+                <span class="stat-label" data-i18n="hero_stat_users">Usuarios Procesados/Día</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-number" style="color:var(--cyber-cyan)">10x</span>
+                <span class="stat-label" data-i18n="hero_stat_speed">Velocidad de Respuesta</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Hero Terminal & Holographic SVGator-Style Vector Showcase -->
+          <div style="display:flex; flex-direction:column; gap:24px;">
+            
+            <!-- Animated Cyber AI Core SVGator Illustration -->
+            <div class="animate-svg-float" style="width:100%; height:200px; display:flex; align-items:center; justify-content:center; position:relative;">
+              <svg viewBox="0 0 500 220" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="grad-green" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#10b981" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.9"/>
+                  </linearGradient>
+                  <linearGradient id="grad-purple" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stop-color="#8b5cf6" stop-opacity="0.9"/>
+                    <stop offset="100%" stop-color="#ec4899" stop-opacity="0.9"/>
+                  </linearGradient>
+                  <filter id="glow-neon" x="-20%" y="-20%" width="140%" height="140%">
+                    <feGaussianBlur stdDeviation="6" result="blur" />
+                    <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                  </filter>
+                </defs>
+
+                <!-- Outer Spinning HUD Ring CW -->
+                <circle cx="250" cy="110" r="95" fill="none" stroke="url(#grad-green)" stroke-width="1.5" stroke-dasharray="14 10 4 10" class="animate-spin-cw"/>
+
+                <!-- Middle Spinning HUD Ring CCW -->
+                <circle cx="250" cy="110" r="75" fill="none" stroke="url(#grad-purple)" stroke-width="2" stroke-dasharray="25 15 8 15" class="animate-spin-ccw"/>
+
+                <!-- Inner Glowing Core Pulse -->
+                <circle cx="250" cy="110" r="45" fill="#0e131f" stroke="#10b981" stroke-width="2" class="animate-pulse-green" filter="url(#glow-neon)"/>
+                <polygon points="250,75 280,125 220,125" fill="url(#grad-green)" opacity="0.8" class="animate-spin-cw"/>
+                <circle cx="250" cy="110" r="14" fill="#8b5cf6" class="animate-pulse-purple"/>
+
+                <!-- Floating Data Chips & Cables -->
+                <g class="animate-pulse-green">
+                  <rect x="100" y="50" width="40" height="24" rx="6" fill="#090c14" stroke="#10b981" stroke-width="1.5"/>
+                  <text x="120" y="66" text-anchor="middle" fill="#10b981" font-family="monospace" font-size="10">AI RAG</text>
+                  <path d="M 140 62 L 180 85" stroke="#10b981" stroke-width="1.5" class="animate-dash"/>
+
+                  <rect x="360" y="50" width="40" height="24" rx="6" fill="#090c14" stroke="#06b6d4" stroke-width="1.5"/>
+                  <text x="380" y="66" text-anchor="middle" fill="#06b6d4" font-family="monospace" font-size="10">SaaS</text>
+                  <path d="M 360 62 L 320 85" stroke="#06b6d4" stroke-width="1.5" class="animate-dash"/>
+
+                  <rect x="90" y="145" width="48" height="24" rx="6" fill="#090c14" stroke="#8b5cf6" stroke-width="1.5"/>
+                  <text x="114" y="161" text-anchor="middle" fill="#c084fc" font-family="monospace" font-size="10">DB CLOUD</text>
+                  <path d="M 138 157 L 185 130" stroke="#8b5cf6" stroke-width="1.5" class="animate-dash"/>
+
+                  <rect x="360" y="145" width="48" height="24" rx="6" fill="#090c14" stroke="#ec4899" stroke-width="1.5"/>
+                  <text x="384" y="161" text-anchor="middle" fill="#ec4899" font-family="monospace" font-size="10">WEB 100</text>
+                  <path d="M 360 157 L 315 130" stroke="#ec4899" stroke-width="1.5" class="animate-dash"/>
+                </g>
+              </svg>
+            </div>
+
+            <!-- Hero Terminal -->
+            <div class="hero-terminal">
+              <div class="terminal-header">
+                <div class="terminal-dots">
+                  <span class="dot dot-red"></span>
+                  <span class="dot dot-yellow"></span>
+                  <span class="dot dot-green"></span>
+                </div>
+                <span class="terminal-title">matrix-core-engine v4.2.0</span>
+              </div>
+              <div class="terminal-body" id="hero-terminal-body">
+                <!-- Terminal content dynamically typed by app.js -->
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="servicios" class="section">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="badge badge-cyan" data-i18n="services_badge">Soluciones Tecnológicas</span>
+          <h2 class="section-title" data-i18n="services_title">Servicios de Desarrollo de <span class="gradient-text-green">Alto Nivel</span></h2>
+          <p class="section-subtitle" data-i18n="services_subtitle">Construimos ecosistemas digitales robustos adaptados a las necesidades reales de tu negocio.</p>
+        </div>
+
+        <div class="services-grid">
+
+          <!-- Service 1: AI Agents -->
+          <div class="glass-card service-card svg-interactive-card">
+            <div class="service-icon-box icon-purple">
+              <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="42" stroke="#8b5cf6" stroke-width="4" stroke-dasharray="10 6" class="animate-spin-cw"/>
+                <circle cx="50" cy="50" r="28" stroke="#10b981" stroke-width="3" stroke-dasharray="16 8" class="animate-spin-ccw"/>
+                <circle cx="50" cy="50" r="14" fill="#8b5cf6" class="animate-pulse-purple"/>
+                <circle cx="50" cy="50" r="6" fill="#fff"/>
+              </svg>
+            </div>
+            <h3 class="service-title" data-i18n="srv1_title">Agentes de Inteligencia Artificial</h3>
+            <p class="service-desc" data-i18n="srv1_desc">
+              Desarrollamos agentes inteligentes autónomos RAG conectados a tus bases de conocimiento internas. Capaces de resolver consultas de clientes, calificar ventas y automatizar flujos operativos 24/7.
+            </p>
+            <div class="service-features">
+              <span class="feature-tag">LLM & GPT-4o</span>
+              <span class="feature-tag">Arquitectura RAG</span>
+              <span class="feature-tag">Vector DB (Pinecone)</span>
+              <span class="feature-tag">Integración API</span>
+            </div>
+          </div>
+
+          <!-- Service 2: SaaS Applications -->
+          <div class="glass-card service-card svg-interactive-card">
+            <div class="service-icon-box icon-cyan">
+              <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="15" y="15" width="70" height="70" rx="14" stroke="#06b6d4" stroke-width="4"/>
+                <path d="M 25 70 L 40 45 L 60 55 L 75 30" stroke="#34d399" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" class="animate-dash"/>
+                <circle cx="75" cy="30" r="6" fill="#06b6d4" class="animate-pulse-green"/>
+              </svg>
+            </div>
+            <h3 class="service-title" data-i18n="srv2_title">Aplicaciones SaaS & Web Apps</h3>
+            <p class="service-desc" data-i18n="srv2_desc">
+              Creación de plataformas SaaS completas: dashboards analíticos en tiempo real, arquitecturas multi-tenant, integración de cobros recurrentes y paneles de administración modernos y seguros.
+            </p>
+            <div class="service-features">
+              <span class="feature-tag">React / Next.js</span>
+              <span class="feature-tag">Node.js / Python</span>
+              <span class="feature-tag">Stripe & MercadoPago</span>
+              <span class="feature-tag">Multi-tenant</span>
+            </div>
+          </div>
+
+          <!-- Service 3: High-End Websites -->
+          <div class="glass-card service-card svg-interactive-card">
+            <div class="service-icon-box icon-green">
+              <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="50" cy="50" r="38" stroke="#10b981" stroke-width="4"/>
+                <ellipse cx="50" cy="50" rx="38" ry="16" stroke="#06b6d4" stroke-width="3" class="animate-spin-cw"/>
+                <line x1="12" y1="50" x2="88" y2="50" stroke="#10b981" stroke-width="3"/>
+                <line x1="50" y1="12" x2="50" y2="88" stroke="#10b981" stroke-width="3"/>
+              </svg>
+            </div>
+            <h3 class="service-title" data-i18n="srv3_title">Sitios Web High-End & Landings</h3>
+            <p class="service-desc" data-i18n="srv3_desc">
+              Páginas web corporativas e integraciones e-commerce con diseño personalizado impactante, velocidad de carga instantánea (PageSpeed 100/100) y SEO técnico avanzado para máxima conversión.
+            </p>
+            <div class="service-features">
+              <span class="feature-tag">Diseño UI/UX Neón</span>
+              <span class="feature-tag">Score 100/100</span>
+              <span class="feature-tag">Headless CMS</span>
+              <span class="feature-tag">Animaciones Canvas</span>
+            </div>
+          </div>
+
+          <!-- Service 4: Databases & Cloud -->
+          <div class="glass-card service-card svg-interactive-card">
+            <div class="service-icon-box icon-pink">
+              <svg width="34" height="34" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="20" y="15" width="60" height="20" rx="6" stroke="#ec4899" stroke-width="4" fill="#090c14"/>
+                <rect x="20" y="40" width="60" height="20" rx="6" stroke="#ec4899" stroke-width="4" fill="#090c14"/>
+                <rect x="20" y="65" width="60" height="20" rx="6" stroke="#ec4899" stroke-width="4" fill="#090c14"/>
+                <circle cx="32" cy="25" r="4" fill="#10b981" class="animate-pulse-green"/>
+                <circle cx="32" cy="50" r="4" fill="#06b6d4" class="animate-pulse-green"/>
+                <circle cx="32" cy="75" r="4" fill="#ec4899" class="animate-pulse-purple"/>
+              </svg>
+            </div>
+            <h3 class="service-title" data-i18n="srv4_title">Bases de Datos & Arquitectura Cloud</h3>
+            <p class="service-desc" data-i18n="srv4_desc">
+              Diseño, optimización y migración de estructuras de datos relacionales y NoSQL. Eliminamos cuellos de botella en PostgreSQL, MySQL y Redis para soportar millones de solicitudes sin fallas.
+            </p>
+            <div class="service-features">
+              <span class="feature-tag">PostgreSQL & Redis</span>
+              <span class="feature-tag">Optimización Queries</span>
+              <span class="feature-tag">Docker / AWS Aurora</span>
+              <span class="feature-tag">Alta Disponibilidad</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive AI Agent Simulator Section -->
+    <section id="simulador-ia" class="section" style="background: rgba(139, 92, 246, 0.02); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-purple" data-i18n="demo_badge">Demostración Interactiva</span>
+          <h2 class="section-title" data-i18n="demo_title">Prueba nuestro <span class="gradient-text-purple">Agente de IA</span> en Tiempo Real</h2>
+          <p class="section-subtitle" data-i18n="demo_subtitle">Interactúa con nuestro simulador para ver cómo responde un agente de Matrix Web ante consultas de clientes y proyectos.</p>
+        </div>
+
+        <div class="agent-demo-container">
+          
+          <!-- Agent Sidebar -->
+          <div class="agent-sidebar">
+            <!-- 3D Avatar Viewport Card -->
+            <div class="agent-profile" style="flex-direction:column; position:relative; padding:0; overflow:hidden; background:#070a12; border:2px solid var(--matrix-green-bright); border-radius:16px; box-shadow:0 0 25px rgba(16, 185, 129, 0.35); margin-bottom:16px;">
+              <div id="3d-avatar-box" style="width:100%; height:400px; position:relative; overflow:hidden;">
+                <!-- 3D Motion Matrix Avatar Canvas rendered here -->
+              </div>
+              
+              <!-- Floating Glass Overlay Header -->
+              <div style="position:absolute; top:12px; left:12px; right:12px; display:flex; justify-content:space-between; align-items:center; background:rgba(7, 10, 18, 0.75); backdrop-filter:blur(8px); border:1px solid rgba(16, 185, 129, 0.3); padding:8px 14px; border-radius:30px; pointer-events:none;">
+                <div style="display:flex; align-items:center; gap:8px;">
+                  <span class="status-dot"></span>
+                  <span class="font-heading" style="font-size:14px; font-weight:700; color:#fff;">Matrix AI Avatar 3D</span>
+                </div>
+                <span style="font-size:11px; color:var(--matrix-green-bright); font-family:var(--font-mono); font-weight:600;">LIVE VOICE</span>
+              </div>
+            </div>
+
+            <div style="font-size:13px; color:var(--text-muted);" data-i18n="demo_sidebar_title">
+              Preguntas de prueba sugeridas:
+            </div>
+
+            <div class="preset-queries">
+              <button class="preset-btn" data-preset="ia" data-i18n="demo_q1">🤖 ¿Cómo funcionan los Agentes de IA?</button>
+              <button class="preset-btn" data-preset="saas" data-i18n="demo_q2">⚡ ¿Qué incluye el desarrollo de un SaaS?</button>
+              <button class="preset-btn" data-preset="db" data-i18n="demo_q3">🗄️ ¿Cómo optimizan bases de datos?</button>
+              <button class="preset-btn" data-preset="web" data-i18n="demo_q4">🌐 ¿Por qué sus webs son ultra-rápidas?</button>
+              <button class="preset-btn" data-preset="cotizar" data-i18n="demo_q5">💼 ¿Cómo puedo cotizar mi proyecto?</button>
+            </div>
+          </div>
+
+          <!-- Agent Chat Window -->
+          <div class="agent-chat-main">
+            <div class="chat-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span class="font-mono" style="font-size:13px; color:var(--electric-purple);">session_id: matrix_rag_demo_01</span>
+              </div>
+              <div style="display:flex; align-items:center; gap:10px;">
+                <button id="voice-toggle-btn" class="btn active" style="background:rgba(16, 185, 129, 0.15); border:1px solid var(--matrix-green); color:var(--matrix-green-bright); font-size:12px; padding:4px 12px; border-radius:20px; cursor:pointer; display:flex; align-items:center; gap:6px; transition:all 0.3s ease;">
+                  🔊 <span data-i18n="voice_on">Voz Activada</span>
+                </button>
+                <span class="badge badge-purple" style="font-size:11px;">RAG Vector DB Connected</span>
+              </div>
+            </div>
+
+            <div class="chat-messages" id="chat-messages">
+              <!-- Initial Agent Message -->
+              <div class="chat-bubble bubble-agent" id="initial-agent-bubble">
+                ¡Hola! 👋 Soy el <strong>Agente de IA de Matrix Web</strong>. Puedo responder tus dudas sobre desarrollo de sitios web, aplicaciones SaaS, bases de datos o agentes inteligentes. ¿En qué te puedo ayudar hoy?
+              </div>
+            </div>
+
+            <div class="chat-input-box">
+              <input type="text" id="chat-input" class="chat-input" data-i18n="demo_placeholder" placeholder="Escribe tu consulta aquí (ej: 'Quiero crear un SaaS con base de datos')..." />
+              <button id="chat-send-btn" class="btn btn-purple btn-sm" data-i18n="demo_send">
+                Enviar
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Portfolio / Works Section -->
+    <section id="portafolio" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-green" data-i18n="port_badge">Casos de Éxito</span>
+          <h2 class="section-title" data-i18n="port_title">Lo que <span class="gradient-text-green">Hicimos hasta Ahora</span></h2>
+          <p class="section-subtitle" data-i18n="port_subtitle">Explora una selección de los proyectos, plataformas e innovaciones que hemos desarrollado para nuestros clientes.</p>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="portfolio-filters">
+          <button class="filter-btn active" data-filter="all" data-i18n="port_filter_all">Todos los Proyectos</button>
+          <button class="filter-btn" data-filter="ai" data-i18n="port_filter_ai">🤖 Agentes IA</button>
+          <button class="filter-btn" data-filter="saas" data-i18n="port_filter_saas">⚡ Aplicaciones SaaS</button>
+          <button class="filter-btn" data-filter="web" data-i18n="port_filter_web">🌐 Desarrollo Web</button>
+          <button class="filter-btn" data-filter="db" data-i18n="port_filter_db">🗄️ Bases de Datos</button>
+        </div>
+
+        <!-- Portfolio Grid -->
+        <div class="portfolio-grid" id="portfolio-grid">
+          <!-- Dynamically populated by js/app.js & js/portfolio-data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section id="cursos" class="section" style="background: rgba(16, 185, 129, 0.02); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-green" data-i18n="courses_badge">Formación Especializada</span>
+          <h2 class="section-title" data-i18n="courses_title">Cursos & <span class="gradient-text-green">Masterclasses Técnicas</span></h2>
+          <p class="section-subtitle" data-i18n="courses_subtitle">Capacítate en el desarrollo de Agentes de IA, SaaS y Bases de Datos con la metodología práctica de Matrix Web.</p>
+        </div>
+
+        <div class="courses-grid" id="courses-grid">
+          <!-- Dynamically populated by js/app.js & js/products-data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Tools & Marketplace Section -->
+    <section id="herramientas" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-purple" data-i18n="tools_badge">Marketplace de Código</span>
+          <h2 class="section-title" data-i18n="tools_title">Herramientas & <span class="gradient-text-purple">Starter Kits Listos</span></h2>
+          <p class="section-subtitle" data-i18n="tools_subtitle">Acelera el lanzamiento de tus aplicaciones con nuestras plantillas, scripts de tuning y componentes probados en producción.</p>
+        </div>
+
+        <div class="tools-grid" id="tools-grid">
+          <!-- Dynamically populated by js/app.js & js/products-data.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal Portfolio -->
+    <div class="modal-overlay" id="portfolio-modal">
+      <div class="modal-content">
+        <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+        <div id="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- MercadoPago Regionalized Checkout Modal -->
+    <div class="modal-overlay" id="checkout-modal">
+      <div class="modal-content" style="max-width:550px;">
+        <button class="modal-close-btn" id="checkout-modal-close-btn">&times;</button>
+        <div style="padding: 32px;">
+          <div style="display:flex; align-items:center; gap:12px; margin-bottom:16px;">
+            <span class="badge badge-green" data-i18n="checkout_modal_title">Checkout de Compra Segura</span>
+          </div>
+
+          <h3 id="checkout-item-title" class="font-heading" style="font-size:22px; font-weight:700; color:#fff; margin-bottom:8px;">
+            <!-- Dynamic Item Title -->
+          </h3>
+          <p id="checkout-item-desc" style="color:var(--text-muted); font-size:14px; margin-bottom:20px;">
+            <!-- Dynamic Item Desc -->
+          </p>
+
+          <div style="background:var(--bg-terminal); border:1px solid var(--border-subtle); border-radius:12px; padding:16px; display:flex; justify-content:space-between; align-items:center; margin-bottom:24px;">
+            <span style="color:var(--text-muted); font-size:14px;" data-i18n="checkout_lbl_price">Precio Total</span>
+            <div id="checkout-item-price" class="product-price-tag">
+              <!-- Dynamic Price -->
+            </div>
+          </div>
+
+          <p style="font-size:13px; color:var(--text-muted); margin-bottom:12px;" data-i18n="checkout_select_mp">
+            Selecciona tu región para abonar vía MercadoPago:
+          </p>
+
+          <div class="mp-checkout-box">
+            <!-- MercadoPago Argentina Option -->
+            <button id="mp-btn-ar" class="mp-option-btn mp-btn-ar">
+              <span>🇦🇷 MercadoPago Argentina (ARS)</span>
+              <span id="mp-price-ars" style="font-size:13px; opacity:0.9;">$18.000 ARS</span>
+            </button>
+
+            <!-- MercadoPago Brasil Option -->
+            <button id="mp-btn-br" class="mp-option-btn mp-btn-br">
+              <span>🇧🇷 MercadoPago Brasil (Pix / BRL)</span>
+              <span id="mp-price-brl" style="font-size:13px; opacity:0.9;">R$ 80 BRL</span>
+            </button>
+
+            <!-- WhatsApp Direct Fallback -->
+            <a id="wsp-checkout-link" href="#" target="_blank" class="mp-option-btn wsp-checkout-btn" data-i18n="checkout_wsp_btn">
+              Consultar o Adquirir por WhatsApp &rarr;
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Official Certificate Generator Modal -->
+    <div class="modal-overlay" id="certificate-modal">
+      <div class="modal-content" style="max-width:900px;">
+        <button class="modal-close-btn" id="cert-modal-close-btn">&times;</button>
+        <div style="padding: 32px;">
+          
+          <div style="text-align:center; margin-bottom:24px;">
+            <span class="badge badge-purple" style="margin-bottom:12px;">🎉 ¡Pago Confirmado & PDF Descargado!</span>
+            <h2 class="font-heading" style="font-size:28px; font-weight:700; color:#fff;">Genera tu Certificado Oficial de Finalización</h2>
+            <p style="color:var(--text-muted); font-size:15px; max-width:600px; margin:8px auto 0 auto;">
+              Ingresa tu nombre para personalizar y emitir el Certificado Oficial firmado por <strong style="color:#10b981;">MatrixWeb Academy</strong>.
+            </p>
+          </div>
+
+          <!-- Student Name Form -->
+          <div style="display:flex; gap:12px; margin-bottom:24px; max-width:600px; margin-left:auto; margin-right:auto;">
+            <input type="text" id="cert-student-name" class="form-input" style="flex:1;" placeholder="Escribe tu Nombre y Apellido completo..." />
+            <button id="cert-generate-btn" class="btn btn-primary">
+              Actualizar Certificado
+            </button>
+          </div>
+
+          <!-- Certificate Canvas Display -->
+          <div style="border:1px solid var(--border-glow); border-radius:12px; overflow:hidden; background:#07090e; display:flex; justify-content:center; box-shadow:0 15px 40px rgba(0,0,0,0.7); margin-bottom:24px;">
+            <canvas id="certificate-canvas" style="width:100%; height:auto; max-height:480px;"></canvas>
+          </div>
+
+          <!-- Download Action Button -->
+          <div style="display:flex; justify-content:center; gap:16px;">
+            <button id="cert-download-btn" class="btn btn-purple glow-effect" style="padding:16px 36px; font-size:16px;">
+              📥 Descargar Certificado Oficial en Alta Resolución (PNG / PDF)
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Project Estimator Section -->
+    <section id="cotizador" class="section" style="background: rgba(6, 182, 212, 0.02); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle);">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-cyan" data-i18n="calc_badge">Calculadora Transparente</span>
+          <h2 class="section-title" data-i18n="calc_title">Estimador de Presupuesto <span class="gradient-text-green">& Tiempos</span></h2>
+          <p class="section-subtitle" data-i18n="calc_subtitle">Selecciona el tipo de proyecto y funcionalidades para obtener un estimado instantáneo.</p>
+        </div>
+
+        <div class="estimator-box">
+          <div class="estimator-grid">
+            
+            <div class="estimator-options">
+              
+              <!-- Service Type Group -->
+              <div>
+                <h4 class="option-group-title" data-i18n="calc_step1">1. Selecciona el Tipo de Proyecto Principal:</h4>
+                <div class="option-cards">
+                  <div class="selectable-card estimator-type-card selected" data-name="Sitio Web High-End" data-price="1200" data-weeks="2">
+                    <span style="font-size:24px;">🌐</span>
+                    <div>
+                      <strong style="display:block; color:#fff;">Sitio Web / Landing</strong>
+                      <span style="font-size:13px; color:var(--text-muted);">Web corporativa de alto nivel</span>
+                    </div>
+                  </div>
+
+                  <div class="selectable-card estimator-type-card" data-name="Aplicación SaaS / Web App" data-price="3500" data-weeks="5">
+                    <span style="font-size:24px;">⚡</span>
+                    <div>
+                      <strong style="display:block; color:#fff;">Plataforma SaaS</strong>
+                      <span style="font-size:13px; color:var(--text-muted);">Web app interactiva completa</span>
+                    </div>
+                  </div>
+
+                  <div class="selectable-card estimator-type-card" data-name="Agente de IA RAG" data-price="2800" data-weeks="4">
+                    <span style="font-size:24px;">🤖</span>
+                    <div>
+                      <strong style="display:block; color:#fff;">Agente de IA Autónomo</strong>
+                      <span style="font-size:13px; color:var(--text-muted);">RAG + LLM + Integraciones</span>
+                    </div>
+                  </div>
+
+                  <div class="selectable-card estimator-type-card" data-name="Optimización de Base de Datos" data-price="1800" data-weeks="3">
+                    <span style="font-size:24px;">🗄️</span>
+                    <div>
+                      <strong style="display:block; color:#fff;">Bases de Datos & Cloud</strong>
+                      <span style="font-size:13px; color:var(--text-muted);">PostgreSQL, Redis & Tuning</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Addon Features Group -->
+              <div>
+                <h4 class="option-group-title" data-i18n="calc_step2">2. Módulos y Funcionalidades Adicionales:</h4>
+                <div class="option-cards">
+                  
+                  <div class="selectable-card estimator-feature-card" data-name="Integración LLM / Vector DB" data-price="900" data-weeks="1">
+                    <div>
+                      <strong style="display:block; color:#fff;">🧠 Inteligencia Artificial / RAG</strong>
+                      <span style="font-size:12px; color:var(--text-muted);">+ $900 USD | +1 Sem</span>
+                    </div>
+                  </div>
+
+                  <div class="selectable-card estimator-feature-card" data-name="Pasarela de Pagos (Stripe)" data-price="500" data-weeks="1">
+                    <div>
+                      <strong style="display:block; color:#fff;">💳 Pasarela de Pagos</strong>
+                      <span style="font-size:12px; color:var(--text-muted);">+ $500 USD | +1 Sem</span>
+                    </div>
+                  </div>
+
+                  <div class="selectable-card estimator-feature-card" data-name="Dashboard de Analítica" data-price="700" data-weeks="1">
+                    <div>
+                      <strong style="display:block; color:#fff;">📊 Dashboard Analítico</strong>
+                      <span style="font-size:12px; color:var(--text-muted);">+ $700 USD | +1 Sem</span>
+                    </div>
+                  </div>
+
+                  <div class="selectable-card estimator-feature-card" data-name="Soporte 24/7 & SLA" data-price="400" data-weeks="0">
+                    <div>
+                      <strong style="display:block; color:#fff;">
+                        <div class="agent-profile">
+                          <div class="agent-avatar">
+                            <svg width="32" height="32" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <rect x="20" y="25" width="60" height="50" rx="14" fill="#090c14" stroke="#8b5cf6" stroke-width="4"/>
+                              <!-- Glowing Robot Eyes -->
+                              <circle cx="38" cy="45" r="7" fill="#10b981" class="animate-pulse-green"/>
+                              <circle cx="62" cy="45" r="7" fill="#06b6d4" class="animate-pulse-green"/>
+                              <!-- Cyber Antenna -->
+                              <line x1="50" y1="25" x2="50" y2="10" stroke="#8b5cf6" stroke-width="4"/>
+                              <circle cx="50" cy="8" r="5" fill="#10b981" class="animate-pulse-purple"/>
+                              <!-- Cyber Mouth -->
+                              <path d="M 36 60 Q 50 68, 64 60" stroke="#10b981" stroke-width="3" stroke-linecap="round"/>
+                            </svg>
+                          </div>
+                          <div>
+                            <h4 class="font-heading" style="font-size:16px; font-weight:600;">Matrix AI Agent</h4>
+                            <span style="font-size:12px; color:var(--matrix-green-bright); display:flex; align-items:center; gap:6px;">
+                              <span class="status-dot"></span> Online & RAG Active
+                            </span>
+                          </div>
+                        </div>
+                      </strong>
+                      <span style="font-size:12px; color:var(--text-muted);">+ $400 USD | +0 Sem</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Estimator Summary Panel -->
+            <div class="estimator-summary">
+              <h4 class="font-heading" style="font-size:18px; color:var(--text-main);" data-i18n="calc_summary_title">Resumen Estimado:</h4>
+
+              <div>
+                <span style="font-size:12px; color:var(--text-muted); text-transform:uppercase;" data-i18n="calc_lbl_cost">Costo Estimado</span>
+                <div id="estimated-price" class="summary-price">$1,200 USD</div>
+              </div>
+
+              <div>
+                <span style="font-size:12px; color:var(--text-muted); text-transform:uppercase;" data-i18n="calc_lbl_time">Tiempo Estimado de Entrega</span>
+                <div id="estimated-time" style="font-family:var(--font-heading); font-size:22px; color:var(--matrix-green-bright); font-weight:600;">~ 2 Semanas</div>
+              </div>
+
+              <ul id="estimator-summary-list" style="list-style:none; display:flex; flex-direction:column; gap:8px; border-top:1px solid var(--border-subtle); padding-top:16px;">
+                <!-- Populated by JS -->
+              </ul>
+
+              <button id="estimator-send-btn" class="btn btn-primary glow-effect" style="width:100%;" data-i18n="calc_btn_transfer">
+                Transferir a Formulario de Contacto
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tech Stack Grid Section -->
+    <section id="tecnologias" class="section">
+      <div class="container">
+        <div class="section-header">
+          <span class="badge badge-purple" data-i18n="tech_badge">Tecnología de Vanguardia</span>
+          <h2 class="section-title" data-i18n="tech_title">Nuestro <span class="gradient-text-purple">Stack Tecnológico</span></h2>
+          <p class="section-subtitle" data-i18n="tech_subtitle">Utilizamos herramientas y lenguajes probados en la industria para garantizar escalabilidad, seguridad y velocidad.</p>
+        </div>
+
+        <div class="tech-grid">
+          <div class="tech-card">
+            <span class="tech-icon">⚛️</span>
+            <strong style="color:#fff;">React / Next.js</strong>
+            <span style="font-size:12px; color:var(--text-muted);">Frontend Ultra-Rápido</span>
+          </div>
+
+          <div class="tech-card">
+            <span class="tech-icon">🐍</span>
+            <strong style="color:#fff;">Python / FastAPI</strong>
+            <span style="font-size:12px; color:var(--text-muted);">IA & Backend de Alto Tráfico</span>
+          </div>
+
+          <div class="tech-card">
+            <span class="tech-icon">🟢</span>
+            <strong style="color:#fff;">Node.js / Express</strong>
+            <span style="font-size:12px; color:var(--text-muted);">Microservicios Async</span>
+          </div>
+
+          <div class="tech-card">
+            <span class="tech-icon">🐘</span>
+            <strong style="color:#fff;">PostgreSQL</strong>
+            <span style="font-size:12px; color:var(--text-muted);">Base de Datos Relacional</span>
+          </div>
+
+          <div class="tech-card">
+            <span class="tech-icon">🤖</span>
+            <strong style="color:#fff;">OpenAI & Pinecone</strong>
+            <span style="font-size:12px; color:var(--text-muted);">Modelos LLM & Vector DB</span>
+          </div>
+
+          <div class="tech-card">
+            <span class="tech-icon">⚡</span>
+            <strong style="color:#fff;">Redis Cluster</strong>
+            <span style="font-size:12px; color:var(--text-muted);">Caché Sub-Millisecond</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact & Booking Section -->
+    <section id="contacto" class="section" style="background: rgba(16, 185, 129, 0.02); border-top: 1px solid var(--border-subtle);">
+      <div class="container">
+        
+        <div class="contact-grid">
+          
+          <div>
+            <span class="badge badge-green" style="margin-bottom:16px;" data-i18n="contact_badge">Hablemos de tu Proyecto</span>
+            <h2 class="section-title" style="margin-bottom:20px;" data-i18n="contact_title">¿Listo para llevar tu empresa a la <span class="gradient-text-green">Matrix?</span></h2>
+            <p style="color:var(--text-muted); font-size:16px; line-height:1.7; margin-bottom:30px;" data-i18n="contact_subtitle">
+              Déjanos un mensaje o agenda una llamada técnica sin compromiso. Evaluaremos tu idea y te propondremos la mejor arquitectura.
+            </p>
+
+            <div style="display:flex; flex-direction:column; gap:20px;">
+              <div style="display:flex; align-items:center; gap:16px;">
+                <div style="width:46px; height:46px; background:rgba(16,185,129,0.1); border:1px solid var(--matrix-green); border-radius:12px; display:flex; align-items:center; justify-content:center; color:var(--matrix-green-bright); font-size:20px;">
+                  💬
+                </div>
+                <div>
+                  <strong style="display:block; color:#fff;" data-i18n="contact_whatsapp_label">Atención Inmediata por WhatsApp</strong>
+                  <a id="whatsapp-direct-link" href="https://wa.me/5512991386257?text=Hola%20Matrix%20Web,%20quiero%20cotizar%20un%20proyecto" target="_blank" style="color:var(--matrix-green-bright); text-decoration:none; font-size:14px; font-weight:600;">+55 12 99138-6257 (Chat Directo) &rarr;</a>
+                </div>
+              </div>
+
+              <div style="display:flex; align-items:center; gap:16px;">
+                <div style="width:46px; height:46px; background:rgba(6,182,212,0.1); border:1px solid var(--cyber-cyan); border-radius:12px; display:flex; align-items:center; justify-content:center; color:var(--cyber-cyan); font-size:20px;">
+                  ✉️
+                </div>
+                <div>
+                  <strong style="display:block; color:#fff;" data-i18n="contact_email_label">Correo Electrónico Directo</strong>
+                  <a href="mailto:paxel177@gmail.com" style="color:var(--cyber-cyan); text-decoration:none; font-size:14px; font-weight:600;">paxel177@gmail.com</a>
+                </div>
+              </div>
+
+              <div style="display:flex; align-items:center; gap:16px;">
+                <div style="width:46px; height:46px; background:rgba(139,92,246,0.1); border:1px solid var(--electric-purple); border-radius:12px; display:flex; align-items:center; justify-content:center; color:#c084fc; font-size:20px;">
+                  ⚡
+                </div>
+                <div>
+                  <strong style="display:block; color:#fff;" data-i18n="contact_response_time">Tiempo de Respuesta Garantizado</strong>
+                  <span style="color:var(--text-muted); font-size:14px;" data-i18n="contact_response_val">Menos de 2 horas hábiles</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <div class="glass-card" style="padding:36px;">
+            <form id="contact-form">
+              
+              <div class="form-group">
+                <label class="form-label" for="contact-name" data-i18n="form_name_label">Nombre Completo *</label>
+                <input type="text" id="contact-name" class="form-input" placeholder="Ej: Alex Mercer" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contact-email" data-i18n="form_email_label">Correo Electrónico *</label>
+                <input type="email" id="contact-email" class="form-input" placeholder="ejemplo@empresa.com" required />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contact-service" data-i18n="form_service_label">Tipo de Servicio de Interés</label>
+                <select id="contact-service" class="form-input" style="background:#090c14; color:#fff;">
+                  <option value="ai" data-i18n="form_opt_ai">Agentes de Inteligencia Artificial (RAG / Bots)</option>
+                  <option value="saas" data-i18n="form_opt_saas">Aplicación SaaS / Plataforma Web</option>
+                  <option value="web" data-i18n="form_opt_web">Sitio Web High-End / Landing Page</option>
+                  <option value="db" data-i18n="form_opt_db">Bases de Datos & Arquitectura Cloud</option>
+                  <option value="otro" data-i18n="form_opt_other">Consulta General / Otro</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contact-message" data-i18n="form_message_label">Detalles del Proyecto / Mensaje *</label>
+                <textarea id="contact-message" class="form-textarea" rows="4" placeholder="Cuéntanos un poco sobre lo que deseas construir..." required></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary glow-effect" style="width:100%;" data-i18n="form_btn_submit">
+                Enviar Solicitud de Proyecto
+              </button>
+
+              <div id="form-status"></div>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <a href="#" class="logo">
+          <div class="logo-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+          </div>
+          <span>MATRIX <span class="gradient-text-green">WEB</span></span>
+        </a>
+
+        <div style="display:flex; gap:24px;">
+          <a href="#servicios" style="color:var(--text-muted); text-decoration:none; font-size:14px;" data-i18n="nav_services">Servicios</a>
+          <a href="#portafolio" style="color:var(--text-muted); text-decoration:none; font-size:14px;" data-i18n="nav_portfolio">Portafolio</a>
+          <a href="#cotizador" style="color:var(--text-muted); text-decoration:none; font-size:14px;" data-i18n="nav_calculator">Calculadora</a>
+          <a href="#contacto" style="color:var(--text-muted); text-decoration:none; font-size:14px;" data-i18n="nav_contact">Contacto</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p data-i18n="footer_rights">&copy; 2026 Matrix Web. Todos los derechos reservados. Arquitectura de Software High-End & Inteligencia Artificial.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Javascript Modules -->
+  <script src="js/matrix-rain.js"></script>
+  <script src="js/portfolio-data.js"></script>
+  <script src="js/products-data.js"></script>
+  <script src="js/matrix-avatar-3d.js"></script>
+  <script src="js/ai-agent-simulator.js"></script>
+  <script src="js/project-estimator.js"></script>
+  <script src="js/certificate-generator.js"></script>
+  <script src="js/i18n.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

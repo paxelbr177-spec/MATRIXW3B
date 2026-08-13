@@ -1,0 +1,10 @@
+# Dependencies & Server Logs
+__pycache__/
+*.pyc
+*.log
+.env
+.DS_Store
+
+# Temporary Storage
+.tempmediaStorage/
+node_modules/
