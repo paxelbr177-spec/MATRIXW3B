@@ -1356,9 +1356,14 @@ header, main, footer {
 @media (max-width: 1024px) {
   .hero-grid, .services-grid, .contact-grid, .estimator-grid {
     grid-template-columns: 1fr;
+    gap: 40px;
   }
   .portfolio-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+  .courses-grid, .tools-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
   }
   .tech-grid {
     grid-template-columns: repeat(3, 1fr);
@@ -1370,10 +1375,243 @@ header, main, footer {
 }
 
 @media (max-width: 768px) {
-  .nav-links { display: none; }
-  .mobile-menu-toggle { display: block; }
-  .portfolio-grid { grid-template-columns: 1fr; }
-  .option-cards { grid-template-columns: 1fr; }
-  .tech-grid { grid-template-columns: repeat(2, 1fr); }
-  .hero-stats { grid-template-columns: 1fr; gap: 12px; }
+  /* Navigation Mobile Bar */
+  .navbar {
+    height: 70px;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background: rgba(9, 12, 20, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 24px;
+    gap: 16px;
+    border-bottom: 1px solid rgba(16, 185, 129, 0.3);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+    z-index: 100;
+  }
+
+  .mobile-menu-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border-subtle);
+    background: rgba(255, 255, 255, 0.03);
+    color: #fff;
+    font-size: 22px;
+  }
+
+  /* Hero Mobile */
+  .hero-section {
+    padding-top: 110px;
+    padding-bottom: 50px;
+  }
+
+  .hero-title {
+    font-size: 32px;
+    line-height: 1.25;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .btn {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    font-size: 14px;
+    padding: 14px 20px;
+  }
+
+  .hero-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .stat-item {
+    padding: 14px 18px;
+  }
+
+  .hero-terminal-window {
+    margin-top: 10px;
+    font-size: 12px;
+  }
+
+  #hero-terminal-body {
+    max-height: 220px;
+    padding: 14px;
+  }
+
+  /* Section Titles Mobile */
+  .section {
+    padding: 60px 0;
+  }
+
+  .section-title {
+    font-size: 28px;
+    line-height: 1.3;
+  }
+
+  .section-subtitle {
+    font-size: 14px;
+  }
+
+  /* Grids Single Column */
+  .services-grid, .portfolio-grid, .courses-grid, .tools-grid, .option-cards {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .tech-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  /* Card Paddings Mobile */
+  .service-card, .portfolio-card, .course-card, .tool-card, .contact-form, .contact-item {
+    padding: 22px;
+    gap: 16px;
+  }
+
+  /* Course / Tool Product Header */
+  .product-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .product-price-tag {
+    font-size: 18px;
+    padding: 6px 14px;
+    align-self: flex-start;
+  }
+
+  .product-meta-list {
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 12px;
+  }
+
+  /* Horizontal Filter Scroll on Mobile */
+  .portfolio-filters {
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 12px;
+    -webkit-overflow-scrolling: touch;
+    margin-bottom: 24px;
+  }
+
+  .filter-btn {
+    flex-shrink: 0;
+    font-size: 13px;
+    padding: 8px 16px;
+    white-space: nowrap;
+  }
+
+  /* AI Simulator Mobile */
+  .agent-demo-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  #3d-avatar-box {
+    height: 260px !important;
+  }
+
+  .preset-queries {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .preset-btn {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+
+  .chat-messages {
+    padding: 16px;
+    max-height: 320px;
+  }
+
+  .chat-bubble {
+    max-width: 94%;
+    font-size: 13px;
+    padding: 12px 14px;
+  }
+
+  .chat-input-box {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .chat-input {
+    font-size: 13px;
+    padding: 10px 12px;
+  }
+
+  /* Estimator Mobile */
+  .estimator-summary-box {
+    padding: 20px;
+  }
+
+  .summary-metrics {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  /* Modals Mobile */
+  .modal-content {
+    max-width: 94vw !important;
+    max-height: 90vh;
+    border-radius: 16px;
+  }
+
+  .mp-option-btn {
+    padding: 14px 16px;
+    font-size: 14px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  #certificate-canvas {
+    max-height: 260px;
+  }
+
+  #cert-download-btn {
+    width: 100%;
+    font-size: 13px;
+    padding: 14px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 26px;
+  }
+  .section-title {
+    font-size: 24px;
+  }
+  .tech-grid {
+    grid-template-columns: 1fr;
+  }
 }
